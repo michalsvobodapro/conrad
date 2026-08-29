@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conrad — Privacy</title>
+<meta name="description" content="What data Conrad accesses, what it does with it, and what it shares.">
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #fbfbf9;
+    --fg: #1a1a18;
+    --muted: #6b6b63;
+    --rule: #e4e4de;
+    --link: #35526e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16161a;
+      --fg: #e8e8e4;
+      --muted: #9a9a92;
+      --rule: #2c2c32;
+      --link: #9dbede;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 8vh 6vw 12vh;
+    background: var(--bg);
+    color: var(--fg);
+    font: 17px/1.65 ui-serif, Georgia, "Times New Roman", serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  main { max-width: 33rem; margin: 0 auto; }
+  h1 { font-size: 1.6rem; font-weight: 600; letter-spacing: -0.015em; margin: 0 0 0.15em; }
+  .sub { color: var(--muted); font-size: 0.95rem; margin: 0 0 2.4em; }
+  h2 {
+    font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.09em;
+    color: var(--muted); margin: 2.6em 0 0.7em;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+  }
+  p { margin: 0 0 1.1em; }
+  a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  ul { margin: 0 0 1.1em; padding-left: 1.1em; }
+  li { margin-bottom: 0.4em; }
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.87em;
+    background: color-mix(in srgb, var(--fg) 7%, transparent);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+  }
+  footer {
+    margin-top: 3.5em; padding-top: 1.4em; border-top: 1px solid var(--rule);
+    color: var(--muted); font-size: 0.87rem;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Privacy</h1>
+  <p class="sub">Conrad has one user, and this describes what happens to that user's data.</p>
+
+  <h2>What it accesses</h2>
+
+  <p>Conrad requests exactly one Google permission, <code>gmail.metadata</code>, against a single Gmail
+  account belonging to its operator. That permission grants the <strong>sender, subject, date and labels</strong>
+  of messages in that mailbox.</p>
+
+  <p>It does not grant access to message bodies, attachments, or any other Google service. Google enforces
+  this: a request for a message body using this credential is refused with an error. No Calendar, Drive,
+  Contacts or other data is accessed.</p>
+
+  <h2>What it does with it</h2>
+
+  <ul>
+    <li>Checks about once a minute for newly arrived mail.</li>
+    <li>Decides from the sender, the subject and Gmail's labels whether the message looks urgent.</li>
+    <li>Notifies the operator when it does.</li>
+  </ul>
+
+  <p>Nothing is sent, replied to, deleted, labelled or modified. Conrad only reads and only notifies.</p>
+
+  <h2>What is stored</h2>
+
+  <p>Message identifiers, timestamps and the urgency decision are kept so that the same message is not
+  processed twice and so the operator can review whether the judgements were right. Subject lines are
+  <strong>not</strong> retained after a decision is made. Message bodies are never available to store.</p>
+
+  <h2>Who else sees it</h2>
+
+  <p>Deciding whether a message is urgent uses a language model provided by
+  <a href="https://www.anthropic.com/">Anthropic</a>. The <strong>sender address, subject line and Gmail
+  labels</strong> of a message are sent to Anthropic's API for that judgement. Nothing else is transmitted,
+  and message bodies cannot be, because Conrad never has them.</p>
+
+  <p>Alerts are delivered through <a href="https://pushover.net/">Pushover</a> and by email to the operator.
+  No data is sold, shared with advertisers, used for training, or disclosed to anyone else.</p>
+
+  <p>Google Workspace API data is not used to develop, improve or train generalised models.</p>
+
+  <h2>Control</h2>
+
+  <p>Access can be withdrawn at any time at
+  <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>, which immediately
+  and permanently ends Conrad's ability to read anything. Since the operator and the only user are the same
+  person, there are no other parties with data to request or erase.</p>
+
+  <footer>
+    Last updated 29 August 2026 &middot; <a href="/">Conrad</a> &middot;
+    <a href="mailto:michalsvoboda.pro@gmail.com">michalsvoboda.pro@gmail.com</a>
+  </footer>
+</main>
+</body>
+</html>

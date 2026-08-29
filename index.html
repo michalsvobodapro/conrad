@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conrad</title>
+<meta name="description" content="Conrad is a private, single-user assistant that watches one Gmail inbox and alerts its owner when something needs attention.">
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #fbfbf9;
+    --fg: #1a1a18;
+    --muted: #6b6b63;
+    --rule: #e4e4de;
+    --link: #35526e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16161a;
+      --fg: #e8e8e4;
+      --muted: #9a9a92;
+      --rule: #2c2c32;
+      --link: #9dbede;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 8vh 6vw 12vh;
+    background: var(--bg);
+    color: var(--fg);
+    font: 17px/1.65 ui-serif, Georgia, "Times New Roman", serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  main { max-width: 33rem; margin: 0 auto; }
+  h1 { font-size: 1.9rem; font-weight: 600; letter-spacing: -0.015em; margin: 0 0 0.15em; }
+  .sub { color: var(--muted); font-size: 0.95rem; margin: 0 0 2.4em; }
+  h2 {
+    font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.09em;
+    color: var(--muted); margin: 2.6em 0 0.7em;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+  }
+  p { margin: 0 0 1.1em; }
+  a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  ul { margin: 0 0 1.1em; padding-left: 1.1em; }
+  li { margin-bottom: 0.4em; }
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.87em;
+    background: color-mix(in srgb, var(--fg) 7%, transparent);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+  }
+  footer {
+    margin-top: 3.5em; padding-top: 1.4em; border-top: 1px solid var(--rule);
+    color: var(--muted); font-size: 0.87rem;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Conrad</h1>
+  <p class="sub">A private on-call assistant for one person's inbox.</p>
+
+  <p>Conrad watches a single Gmail inbox and decides, as mail arrives, whether anything needs its owner's
+  attention right away. If something does, it raises an alert. If not, it stays quiet.</p>
+
+  <p>It is not a product and not a service. It has one user, its author, and it is not open to signups.
+  This page exists because Google requires any application requesting access to a Google Account to
+  publish one.</p>
+
+  <h2>What it can see</h2>
+
+  <p>Conrad holds a single Google permission: <code>gmail.metadata</code>. That grants the sender, subject,
+  date and labels of a message, and nothing further.</p>
+
+  <p>It cannot read the body of an email. That is not a policy or an intention — the permission itself
+  refuses. Requesting a message body with this credential returns an error from Google, which is the
+  reason it was chosen.</p>
+
+  <h2>What it does</h2>
+
+  <ul>
+    <li>Checks for newly arrived mail about once a minute.</li>
+    <li>Judges from the sender, the subject and Gmail's own labels whether it looks urgent.</li>
+    <li>Notifies its owner when it does.</li>
+    <li>Never sends, replies, deletes, or modifies anything in the mailbox.</li>
+  </ul>
+
+  <footer>
+    <a href="/privacy.html">Privacy</a> &middot; Operated by Michal Svoboda &middot;
+    <a href="mailto:michalsvoboda.pro@gmail.com">michalsvoboda.pro@gmail.com</a>
+  </footer>
+</main>
+</body>
+</html>
